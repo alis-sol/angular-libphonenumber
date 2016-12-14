@@ -105,14 +105,14 @@ angular.module('cwill747.phonenumber', [])
         }
 
         function validator(value) {
-          var isValidForRegion = false;
+          var isValid = false;
           try {
-            isValidForRegion = $window.phoneUtils.isValidNumberForRegion(value, scope.countryCode);
+            isValid = $window.phoneUtils.isPossibleNumber(value, scope.countryCode);
           }
           catch (err) {
             $log.debug(err);
           }
-          var valid = ctrl.$isEmpty(value) || isValidForRegion;
+          var valid = ctrl.$isEmpty(value) || isValid;
           ctrl.$setValidity('phoneNumber', valid);
           return value;
         }
